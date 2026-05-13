@@ -1,4 +1,4 @@
-**Hello everyone!**
+## **Hello everyone!**
 
 Welcome to my second Hack The Box walkthrough. In this writeup, we will explore the exploitation of the Valentine machine, an “Easy” box that many users considered closer to Medium difficulty.
 
