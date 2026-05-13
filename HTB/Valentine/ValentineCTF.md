@@ -1,6 +1,6 @@
 **Hello everyone!**
 
-Welcome to my second Hack The Box CTF walkthrough. In this challenge, we will exploit the Valentine machine, an “Easy” box that was interestingly rated mostly as Medium by the community.
+Welcome to my second Hack The Box walkthrough. In this writeup, we will explore the exploitation of the Valentine machine, an “Easy” box that many users considered closer to Medium difficulty.
 
 Let’s get started!
 
