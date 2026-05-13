@@ -56,6 +56,8 @@ It works! We successfully decrypted the `GPPstillStandingStrong2k18` password.
 
 We are encouraged to use this password with the service account **SVC_TGS**.
 
+## Privilege Escalation
+
 Instead of using it directly, we can leverage this account to perform a **Kerberoasting attack**.
 
 Kerberoasting targets accounts that have a **Service Principal Name** (SPN). Any authenticated domain user can request a Kerberos service ticket (TGS) for these accounts from the **KDC**.
