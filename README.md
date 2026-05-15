@@ -1,3 +1,3 @@
 # ctf-writeups
 Hello !
-This is my GitHub's write-ups repository, i try to perform my redactionals skills here !
+Welcome to my GitHub's write-ups repository, i try to practice my redactional skills here !
