@@ -299,7 +299,7 @@ We can now run `su root` in order to gain root access without needing to provide
 
 
 
-![image](/HTB/PermX/PermX_images/29.png)
+![image](/HTB/PermX/PermX_images/3O.png)
 
 
 
