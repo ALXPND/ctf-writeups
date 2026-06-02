@@ -124,10 +124,10 @@ Awesome, without directly escalating privileges, we caught the final flag!
 
 ## Conclusion
 
-This machine was a good example of how multiple small misconfigurations can chain together into a full compromise. The initial access relied on a vulnerable PDF generation feature using an outdated Ruby library, which allowed remote code execution and foothold on the system as the low-privileged user.
+This machine was a good example of how multiple small misconfigurations can **chain together into a full compromise**. The initial access relied on a vulnerable PDF generation feature using an outdated Ruby library, which allowed **remote code execution** and foothold on the system as the low-privileged user.
 
 From there, the privilege escalation path was not based on a kernel exploit or complex binary vulnerability, but on a simple yet critical misconfiguration in a sudo-allowed Ruby script. The combination of a relative file path and unsafe file handling made it possible to influence what the script reads when executed as root.
 
-Overall, this box highlights two important security lessons: always keep third-party libraries up to date, especially those processing user-controlled input, and avoid relying on unsafe file path resolution or deserialization patterns in privileged scripts.
+Overall, this box highlights two important security lessons: always keep third-party libraries **up to date**, especially those processing user-**controlled input**, and avoid relying on **unnsafe file path resolution** or **deserialization patterns** in privileged scripts.
 
-A solid reminder that in real-world environments, privilege escalation often comes from design and configuration issues rather than advanced exploitation techniques.
+A solid reminder that in real-world environments, privilege escalation often comes from **design and configuration issues** rather than advanced exploitation techniques.
