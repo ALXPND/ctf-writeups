@@ -30,7 +30,7 @@ After doing some research about it, we can learn that this behavior typically co
 
 ![image](/HTB/CozyHosting/CozyHosting_images/4.png)
 
-From there, we can use an adapted wordlist which will focus on the Spring Boot technology and related endpoint. The wordlist can be found here.
+From there, we can use an adapted wordlist which will focus on the Spring Boot technology and related endpoint. The wordlist can be found here: https://github.com/emadshanab/DIR-WORDLISTS/blob/main/spring-boot.txt
 
 ![image](/HTB/CozyHosting/CozyHosting_images/5.png)
 
@@ -183,11 +183,11 @@ Challenge completed!
 
 The *Cozyhosting* machine is a great example of how multiple relatively small misconfigurations can be chained together to achieve full system compromise. We began with basic enumeration, which led us to a Spring Boot application exposing sensitive endpoints through the Actuator interface. This ultimately allowed us to perform session hijacking and gain access to an authenticated administrative panel.
 
-From there, we identified a vulnerable SSH-related feature in a POST request, which resulted in a command injection in the `username` parameter. By bypassing input restrictions using `${IFS}`, we achieved initial access to the system as the `app` user.
+From there, we identified a vulnerable SSH-related feature in a POST request, which resulted in a command injection in the `username` parameter. By bypassing input restrictions using `${IFS}`, we achieved initial access to the system as the **app** user.
 
-Further enumeration revealed a Java application archive containing sensitive configuration data, including cleartext database credentials. This enabled us to access the PostgreSQL database, extract user credentials, and obtain a cracked password, which allowed lateral movement to the `josh` user via SSH.
+Further enumeration revealed a Java application archive containing sensitive configuration data, including cleartext database credentials. This enabled us to access the PostgreSQL database, extract user credentials, and obtain a cracked password, which allowed lateral movement to the **josh** user via SSH.
 
-Finally, privilege escalation was achieved by abusing a misconfigured `sudo` permission on the `ssh` binary. By leveraging the `ProxyCommand` option, we executed arbitrary commands as root and obtained full control of the system.
+Finally, privilege escalation was achieved by abusing a misconfigured `sudo` permission on the `ssh` binary. By leveraging the `ProxyCommand` option, we executed arbitrary commands as root and obtained **full control of the system**.
 
 Overall, this machine highlights the importance of secure session management, proper input validation, secure credential storage, and strict sudo privilege configurations. A weakness in any of these areas can lead to full system compromise when chained together.
 
