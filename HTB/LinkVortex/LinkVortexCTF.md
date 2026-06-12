@@ -155,7 +155,7 @@ We will then dissimulate it into another symlink:
 
 `ln -s /tmp/r/.ssh/id_rsa exploit.png`
 
-→ `exploit.png` target is the `/tmp/r/.ssh/id_rsa` chain, this is what we will provide to the script. As we can see, this chain does not contain “etc” or “root”, so the grep filter will let it pass
+→ `exploit.png` target is the `/tmp/r/.ssh/id_rsa` chain, this is what we will provide to the script. As we can see, this chain does not contain “etc” or “root”, so the grep filter will let it pass.
 
 The `CHECK_CONTENT` environment variable is preserved through sudo (`env_keep+=CHECK_CONTENT`) and directly influences the execution flow of the script. When set to `true`, it triggers a **root-executed** `cat` on the quarantined file, which becomes the main primitive exploited in combination with symlinks.
 
