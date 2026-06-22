@@ -113,7 +113,7 @@ After creating the malicious `compare.py` script in the `/tmp` folder and giving
 
 ![image](/THM/JPGChat/JPGChat_images/13.png)
 
-The Python module has been hijacked! This allowed us to execute a malicious Python script we control instead. We will now execute the `rootbash` binary (which is simply `/bin/bash` with the root SUID bit set on it) with the `-p` option to prevent the executable from dropping its **root privileges** as soon as it runs:
+The Python module has been hijacked! This allowed us to execute a malicious Python script we control instead. We will now execute the `rootbash` binary (which is simply `/bin/bash` with the root SUID bit set on it) with the `-p` option to prevent the executable from dropping its privileges as soon as it runs:
 
 ![image](/THM/JPGChat/JPGChat_images/14.png)
 
