@@ -107,7 +107,7 @@ We successfully achieved remote code execution from the target website. Because 
 
 ![image](/HTB/Curling/Curling_images/17.png)
 
-The request should hang in your browser and you should obtain an initial access on the machine as the user **www-data**.
+The request should hang in your browser and you should obtain an initial access on the machine as the **www-data** user.
 
 Since the current shell has no TTY and job control, it can be upgraded using the following commands:
 
@@ -152,13 +152,13 @@ We successfully gained access to the **floris** user, allowing us to retrieve th
 
 We now need to find a way to retrieve the final flag located in the restricted `/root` directory.
 
-A basic local enumeration with Living-Off-The-Land tools wasn’t enough to find the breach. I used **pspy64** to ****perform ****live monitoring of the system’s scheduled jobs and tasks. After transferring it through a Python server on the attacker machine, I gave it execute permissions and launched it to monitor what could be happening in the background:
+A basic local enumeration with Living-Off-The-Land tools wasn’t enough to find the breach. I used **pspy64** to perform live monitoring of the system’s scheduled jobs and tasks. After transferring it through a Python server on the attacker machine, I gave it execute permissions and launched it to monitor what could be happening in the background:
 
 ![image](/HTB/Curling/Curling_images/24.png)
 
 ![image](/HTB/Curling/Curling_images/25.png)
 
-We can observe that the system executesthe system periodically executes a curl command as **root**, using an `input` configuration file located in our `admin-area` directory. Listing its permissions reveals that this file is writable by us, which means that we can control what the `curl` command will fetch:
+We can observe that the system periodically executes a curl command under a process **root-owned**, using an `input` configuration file located in our `admin-area` directory. Listing its permissions reveals that this file is writable by us, which means that we can control what the `curl` command will fetch:
 
 ![image](/HTB/Curling/Curling_images/26.png)
 
@@ -174,7 +174,7 @@ After saving the file, we just have to wait the task to be executed in order for
 
 This command introduces a one-second delay between the moment the configuration file is parsed by `curl` and the file get overwritten. This creates a race condition between the moment our malicious configuration is written, the moment curl reads it as root, and the moment the original configuration overwrites it. One technique consists of repeatedly executing the following code writing command < every second in order to be sure that the file instruction will be treated before the overwriting of our malicious file. We could then use this command continuously by using the UP arrow key + Enter:
 
-`echo 'url = "file:///root/root.txt"' > input && echo 'output = "/home/floris/root_flag_owned.txt"'`
+`echo 'url = "file:///root/root.txt"' > input && echo 'output = "/home/floris/root_flag_owned.txt"' >> input`
 
 ![image](/HTB/Curling/Curling_images/27.png)
 
