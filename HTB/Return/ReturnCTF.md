@@ -1,12 +1,14 @@
 ## Welcome everyone!
-g
+
+
+
 Today, we will explore ‘Return’, an easy-rated machine from Hack The Box.
 
 Without further ado, let’s get started!
 
 ![image](/HTB/Return/Return_images/1.png)
-
 (Please ensure that you have added the following line `TARGET_IP   return.htb return.local` to your local `/etc/hosts` file to enable **DNS resolution**.)
+
 
 ## Information Gathering
 
