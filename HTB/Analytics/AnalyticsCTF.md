@@ -209,4 +209,3 @@ Ultimately, this box demonstrates a full attack chain: from **web exploitation â
 
 
 **Thank you for reading!**
-(fatigue is showing)
