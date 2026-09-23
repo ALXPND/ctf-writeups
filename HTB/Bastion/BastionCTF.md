@@ -44,11 +44,11 @@ A deeper enumeration of the share leads us to the `\WindowsImageBackup\L4mpje-PC
 
 These files are **virtual hard disk (VHD) images** containing NTFS filesystems from the Windows backup. They could contain sensitive files, including Windows registry hives. Researching VHD analysis techniques led me to `guessmount`, a tool from the **libguestfs** suit used for credential harvesting.
 
-![image](/HTB/Bastion/Bastion_images/6.png)
+## Initial Access
 
-Let’s download both `.vhd` files from the SMB share to our local machine using the `get` command. This could take a while, especially for the second one.
+We first need to download both `.vhd` files from the SMB share to our local machine using the `get` command. This could take a while, especially for the second one.
 
-Once both files are in our directory, after creating a `vhd_mount` folder, we can execute the following command to mount the NTFS filesystem and access the files stored inside the VHD:
+Once it has been done, after creating a `vhd_mount` folder in the same directory, we can execute the following command to mount the NTFS filesystem and access the files stored inside the VHD:
 
 `sudo guestmount --add 9b9cfbc3-369e-11e9-a17c-806e6f6e6963.vhd --mount /dev/sda1 --ro vhd_mount`
 
@@ -64,9 +64,9 @@ Now, let’s mount the second one:
 
 ![image](/HTB/Bastion/Bastion_images/7.png)
 
-The target filesystem has successfully been mounted on our local machine! This is very interesting from a security perspective. We can now access the files we want from the Windows filesystem. Since we mounted the filesystem in read-only mode, we can safely inspect and copy sensitive files without modifying the original VHD.
+The target filesystem has successfully been mounted on our local machine! This is very interesting from an attacker perspective because he could now access the desired files from the Windows filesystem. Since we mounted the filesystem in read-only mode, we can safely inspect and copy sensitive files without modifying the original VHD.
 
-Accessing the `C:\Windows\System32\config\` directory allows us to retrieve the `SAM` and `SYSTEM` registry hive files. These files can be used to extract the NTLM password hashes of local Windows users.
+Accessing the `C:\Windows\System32\config\` directory allows us to retrieve the `SAM` and `SYSTEM` registry hives. These files can be used to extract the NTLM password hashes of local Windows users.
 
 So let’s run the following command to verify if this can be achieved:
 
