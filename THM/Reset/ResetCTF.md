@@ -1,4 +1,4 @@
-Welcome everyone!
+## Welcome everyone!
 
 Today, we will explore “Reset”, a hard.-rated machine from TryHackMe, our first one!
 
