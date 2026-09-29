@@ -1,6 +1,6 @@
 ## Welcome everyone!
 
-Today, we will explore “Reset”, a hard.-rated machine from TryHackMe, our first one!
+Today, we will explore “Reset”, a *hard-rated* machine from TryHackMe, our first one together!
 
 For this challenge, I want to be as real as possible. I will demonstrate my method, going through failures and rabbit holes. This is not the absolute way to complete this room. I started all of this 10 months ago, so I definitely make mistakes.
 
