@@ -46,6 +46,9 @@ We could construct the following users list in order to weaponize ourselves for 
 
 ![image](/HTB/Forest/Forest_images/6.png)
 
+
+## Initial Access
+
 We now have the weapon needed to lead our Active Directory attacks, although no authenticate access is granted yet.
 
 Since the **Kerberos authentication flow** starts from an **AS-REQ** (Request) made generally from a pre-authenticated user to the **Authentication service** (AS) in order to receive a **Ticket-Granting-Ticket** (TGT) from the **Key Distribution Center** (KDC), owned by the Domain Controller (previously identified as `FOREST.htb.local`). This step is essential for users to access a service legitimately; it is crucial from a security perspective for obvious reasons.
