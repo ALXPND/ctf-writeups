@@ -109,17 +109,17 @@ Since no error has been returned by PowerShell, DACL modification has been succe
 
 ![image](/HTB/BabyTwo/BabyTwo_images/16.png)
 
-As expected, password change was successful. The domain account responsible for GPO management have been compromised, which means that `Default Domain Policies` and Default `Domain Controller Policies` Group Policies Objects could be abused in order to grant to ourselves sensitive privileges within the AD domain. This can be confirmed by inspecting the Outband Object Control tab in BloodHound concerning the gpoadm domain object.
+As expected, password change was successful. The domain account responsible for GPOs management have been compromised, which means that `Default Domain Policies` and Default `Domain Controller Policies` Group Policies Objects could be abused in order to grant to ourselves sensitive privileges within the AD domain. This can be confirmed by inspecting the Outband Object Control tab in BloodHound concerning the gpoadm domain object.
 
 ![image](/HTB/BabyTwo/BabyTwo_images/17.png)
 
-The GenericAll ACE permission grants Full Control over GPO objects, which represents a critical level of compromise. An attacker could leverage a script such as pygpoabuse.py that will abuse write permissions granted over any vulnerable GPO in order to configure a scheduled task processed by the **`NT AUTHORITY\System`** privileged account that will create and add a `john` user in the `BUILTIN\Administrators` local group of the machine. Given that this is done on the controller domain, this privileged entity automatically adds the user to the **Tier Zero** group "**`*Administrators*`**" which represents a significant security risk.
+The GenericAll ACE permission grants Full Control over GPO objects, which represents a critical level of compromise. An attacker could leverage a script such as pygpoabuse.py that will abuse write permissions granted over any vulnerable GPOs in order to configure a scheduled task processed by the **`NT AUTHORITY\System`** privileged account that will create and add a `john` user in the `BUILTIN\Administrators` local group of the machine. Given that this is done on the controller domain, this privileged entity automatically adds the user to the **Tier Zero** group "**`*Administrators*`**" which represents a significant security risk.
 
 ![image](/HTB/BabyTwo/BabyTwo_images/18.png)
 
 ![image](/HTB/BabyTwo/BabyTwo_images/19.png)
 
-The newly generated scheduled task could then be retrieved from the `SYSVOL` SMB share, in the ScheduledTask folder, revealing valid credentials for authenticate as the newly generated `john` domain administrator user with the DC.
+The newly generated scheduled task could then be retrieved from the `SYSVOL` SMB share, In the `ScheduledTask` folder, valid credentials could be retrieved for authenticating as `john` --the newly created domain administrator account--  with the DC .
 
 ![image](/HTB/BabyTwo/BabyTwo_images/20.png)
 
