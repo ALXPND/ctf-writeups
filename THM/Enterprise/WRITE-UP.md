@@ -51,13 +51,13 @@ We now have the weapon needed to lead our Active Directory attacks, although no 
 
 ## Initial Access
 
-Since the **Kerberos authentication flow** starts from an ***AS-REQ*** (Request) made generally from a pre-authenticated user to the **Authentication service** (AS) in order to receive a ***Ticket-Granting-Ticket*** (TGT) from the ***Key Distribution Center*** (KDC), owned by the Domain Controller (previously identified as `FOREST.htb.local`). This step is essential for users to access a service legitimately; it is crucial from a security perspective for obvious reasons.
+Since the **Kerberos authentication flow** starts from an ***AS-REQ*** (Request) made generally from a pre-authenticated user to the **Authentication service** (AS) in order to receive a ***Ticket-Granting-Ticket*** (TGT) from the ***Key Distribution Center*** (KDC), owned by the Domain Controller (previously identified as `LAB-DC.LAB.ENTERPRISE.THM`). This step is essential for users to access a service legitimately; it is crucial from a security perspective for obvious reasons.
 
 However, there is a flag in the ***userAccountControl*** attribute of an Active Directory account that, when set on an account, allows to make the KDC skip this **pre**-authentication check entirely during the AS-REQ: this flag is called `DONT_REQUIRE_PREAUTH`. If enabled, an ***AS-REP*** (Reply) could be obtained from the KDC, containing a **Kerberos credential** derived from the victim’s password hash that an attacker could attempt to crack offline through **Hashcat** or **John** **the** **Ripper**.
 
 The Impacket suit contains awesome tools for AD pentesting. For this first exploitation stage, we will use **impacket-GetNPUsers**. The following command could be executed to query the KDC for domain users 
 
-`impacket-GetNPUsers htb.local/ -no-pass -usersfile users.txt -dc-ip TARGET_IP`
+`impacket-GetNPUsers LAB.ENTERPRISE.THM/ -no-pass -usersfile users.txt -dc-ip TARGET_IP`
 
 ![image](/THM/Enterprise/Enterprise_images/6.png)
 
